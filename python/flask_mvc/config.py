@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
     IP_HOST = 'localhost'
     PORT_HOST = 8000
     URL_MAIN = 'http://%s/%s' % (IP_HOST, PORT_HOST)
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://edson:********@localhost:3306/db_flask_mvc'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://tst_edson:Pass@123@localhost:3306/db_flask_mvc'
 
 
 app_config = {

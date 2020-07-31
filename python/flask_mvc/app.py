@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-
+from model import User
 from config import app_config, app_active
 
 config = app_config[app_active]
@@ -12,12 +12,15 @@ def create_app(config_name):
     app.config.from_object(app_config[app_active])
     app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db = SQLAlchemy(app)
-    db.init(app)
+    db.init_app(app)
 
     @app.route('/')
+    @app.route('/index')
     def index():
-        return 'Olá, Edson Canganjo!'
+        result = User.query.first()
+        return render_template('home.html', user=result.username)
 
 
     return app
